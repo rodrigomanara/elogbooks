@@ -1,31 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
 
 
-{% block body %}
+{% block container %}
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-success">
-                    <div class="panel-heading">Elogbooks</div>
+            <div class="col l10 ">
+                
 
                     {% if app.user != null %}
 
-                        <div id="form">
-                            <form name="add_job_form" id="add_job_form">
-                                <input name="user_id" type="hidden" value="{{ app.user.id }}" />
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Description</label>
-                                    <input type="text" class="form-control" id="description" placeholder="description" name="description">
-                                </div>
+                        <h4> Welcome , {{ app.user.name }} </h4>
 
-                                <button type="button" name="add_job" class="btn btn-default">Submit</button>
-                            </form>
-                        </div>
-                        <div id="jobs_list"></div>
+                        
+                        <a href="{{ url('joblist') }}" class="btn-large waves-effect waves-light orange">job list</a>
+                         
                     {% endif %}
 
-                </div>
+          
 
                 {% if app.user == null %}
                     <a href="{{ url('login')}}" class="btn btn-info"> Login </a>
@@ -33,60 +25,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {% if app.user != null %}
-
-        <script>
-            var app = {
-                
-                init: function(){
-                    this.getJobs();
-                    this.createJobs();
-                    
-                },
-                
-                getJobs: function () {
-                    $.ajax({
-                        url: 'job',
-                        data: { user_id : {{ app.user.id }} },
-                        dataType: 'json',
-                        success: function (e) {
-                            var html = '';
-                            $.each(e.data, function (i, v) {
-                                html += "<tr>";
-                                html += "<td>" + v.id + "</td>";
-                                html += "<td>" + v.description + "</td>";
-                                html += "<td>" + v.status + "</td>";
-                                html += "</tr>";
-                            });
-                            $('#jobs_list').html('<table class="table">' + html + ' </table>');
-                        }
-                    });
-                },
-                createJobs: function () {
-
-                    $('button[name=add_job]').click(function () {
-                        $.ajax({
-                            url: 'job',
-                            data: $('#add_job_form').serialize(),
-                            dataType: 'json',
-                            type: 'post',
-                            success: function (e) {
-                                app.getJobs();
-                            }
-                        });
-                    })
-
-                }
-
-            }
-            
-            
-            app.init();
-
-        </script>
-    {% endif %}
-
 {% endblock %}

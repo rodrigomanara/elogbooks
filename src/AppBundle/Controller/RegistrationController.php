@@ -40,6 +40,7 @@ class RegistrationController extends Controller
 
         return $this->render('auth/register.html.twig', [
             'form' => $form->createView(),
+            'page_title' => 'Registration'
         ]);
     }
 }

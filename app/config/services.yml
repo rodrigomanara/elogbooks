@@ -8,3 +8,9 @@ services:
     app.form_login_authenticator:
         class: AppBundle\Security\FormLoginAuthenticator
         arguments: ["@router", "@security.password_encoder"]
+        
+    app.twig_extension.is_admin:
+        class: AppBundle\Twig\UserTwigExtension
+        arguments: ["@security.token_storage"]    
+        tags:
+            - { name: twig.extension }

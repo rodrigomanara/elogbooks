@@ -13,7 +13,7 @@ use AppBundle\Entity\Quote;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/quote")
+ * @Route("/member/quote")
  */
 class QuoteController extends AbstractApiController
 {

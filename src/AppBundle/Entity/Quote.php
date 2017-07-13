@@ -5,7 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 /**
  * @ORM\Table(name="quote")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuoteRepository")
@@ -38,7 +39,15 @@ class Quote
      * @JMS\Groups({"default", "list"})
      */
     protected $description;
+    
+     /**
+     * .
+     * @ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user_id;
 
+    
     /**
      * @return int
      */
@@ -67,4 +76,28 @@ class Quote
         return $this;
     }
 
+
+    /**
+     * Set userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return Quote
+     */
+    public function setUserId(\AppBundle\Entity\User $userId = null)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
 }

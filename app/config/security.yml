@@ -18,3 +18,10 @@ security:
             logout:
                 path: /logout
                 target: /
+                
+        member:
+            pattern: /(*)
+            context: member
+            anonymous: true
+            stateless: false
+            http_basic: ~

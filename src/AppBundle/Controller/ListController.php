@@ -19,9 +19,27 @@ class ListController extends Controller {
      * @Route("/", name="welcome")
      */
     public function showAction(Request $request) {
-       
-
-        return $this->render('default/index.html.twig', array('character' => []));
+        return $this->render('default/index.html.twig', array('page_title' => ' '));
     }
+
+    /**
+     * @Route("/member/joblist", name="joblist")
+     */
+    public function showJobsList() {
+        return $this->render('default/job.list.html.twig', array('page_title' => 'Jobs List Manager '));
+    }
+     /**
+     * @Route("/member/quotelist", name="quotelist")
+     */
+    public function showQuoteList() {
+        return $this->render('default/quote.list.html.twig', array('page_title' => 'Quote List Manager '));
+    }
+    /**
+     * @Route("/member/userlist", name="userlist")
+     */
+    public function showUserList() {
+        return $this->render('default/user.list.html.twig', array('page_title' => 'User List Manager '));
+    }
+    
 
 }

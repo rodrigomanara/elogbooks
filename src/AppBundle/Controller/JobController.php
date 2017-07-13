@@ -14,16 +14,15 @@ use AppBundle\Entity\Job;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/job")
+ * @Route("/member/job")
  */
-class JobController extends AbstractApiController
-{
+class JobController extends AbstractApiController {
+
     /**
      * @Route("/{id}")
      * @Method("GET")
      */
-    public function getAction(Job $job)
-    {
+    public function getAction(Job $job) {
         return $this->returnViewResponse($job);
     }
 
@@ -35,8 +34,7 @@ class JobController extends AbstractApiController
      * @Route("")
      * @Method("GET")
      */
-    public function cgetAction(Request $request)
-    {
+    public function cgetAction(Request $request) {
         $filter = new JobFilter();
 
         $form = $this->createForm('AppBundle\Form\FilterType\JobFilterType', $filter, ['method' => 'GET']);
@@ -48,18 +46,14 @@ class JobController extends AbstractApiController
 
         /** @var AbstractPagination $pagination */
         $pagination = $this->get('knp_paginator')->paginate(
-            $this
-                ->getDoctrine()
-                ->getRepository(Job::class)
-                ->filterAndReturnQuery($filter),
-            $filter->getPage(),
-            $filter->getLimit()
+                $this
+                        ->getDoctrine()
+                        ->getRepository(Job::class)
+                        ->filterAndReturnQuery($filter), $filter->getPage(), $filter->getLimit()
         );
 
         return $this->returnCollectionViewResponse(
-            $pagination,
-            Response::HTTP_OK,
-            $filter->getSerialisationGroups()
+                        $pagination, Response::HTTP_OK, $filter->getSerialisationGroups()
         );
     }
 
@@ -71,8 +65,7 @@ class JobController extends AbstractApiController
      * @Route("")
      * @Method("POST")
      */
-    public function postAction(Request $request)
-    {
+    public function postAction(Request $request) {
         $job = new Job();
         $form = $this->createForm('AppBundle\Form\Type\JobType', $job, ['method' => 'POST']);
         $form->handleRequest($request);
@@ -87,4 +80,5 @@ class JobController extends AbstractApiController
 
         return $this->returnViewResponse($this->getErrors($form), Response::HTTP_BAD_REQUEST);
     }
+
 }

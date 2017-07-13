@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
@@ -17,21 +18,31 @@ class User implements UserInterface {
      * @ORM\Id;
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @JMS\Expose
+     * @JMS\Groups({"default", "list"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * 
+     * @JMS\Expose
+     * @JMS\Groups({"default", "list"})
      */
     protected $email;
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @JMS\Expose
+     * @JMS\Groups({"default", "list"})
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @JMS\Expose
+     * @JMS\Groups({"default", "list"})
      */
     protected $role;
 
@@ -44,9 +55,7 @@ class User implements UserInterface {
      * @ORM\Column(type="string", length=64)
      */
     protected $password;
-    
-   
-    
+
     public function eraseCredentials() {
         return null;
     }
@@ -107,5 +116,4 @@ class User implements UserInterface {
         return null;
     }
 
- 
 }
