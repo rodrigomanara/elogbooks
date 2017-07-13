@@ -4,14 +4,19 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\ManyToOne;
+use AppBundle\Entity\Job;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * @ORM\Table(name="quote")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\QuoteRepository")
+ * @ORM\Table(name="job")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\JobRepository")
  */
-class Quote
+class Job
 {
+    const STATUS_OPEN = 0;
+    const STATUS_DONE = 1;
+
     /**
      * @var integer
      *
@@ -28,16 +33,29 @@ class Quote
      * @var string
      *
      * @ORM\Column(type="string")
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *      min = 0,
-     *      max = 5000,
-     * )
      *
      * @JMS\Expose
      * @JMS\Groups({"default", "list"})
      */
     protected $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"default", "list"})
+     */
+    protected $status = self::STATUS_OPEN;
+ 
+    
+     /**
+     * Many Users have One Address.
+     * @ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user_id;
 
     /**
      * @return int
@@ -66,5 +84,4 @@ class Quote
 
         return $this;
     }
-
 }

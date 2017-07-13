@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Doctrine\ORM\Mapping\ManyToOne; 
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table(name="job")
@@ -45,6 +47,14 @@ class Job
      * @JMS\Groups({"default", "list"})
      */
     protected $status = self::STATUS_OPEN;
+ 
+    
+     /**
+     * Many Users have One Address.
+     * @ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user_id;
 
     /**
      * @return int
@@ -72,5 +82,53 @@ class Job
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Job
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return Job
+     */
+    public function setUserId(\AppBundle\Entity\User $userId = null)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }

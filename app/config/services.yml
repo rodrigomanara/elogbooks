@@ -3,3 +3,8 @@ parameters:
 services:
     jms_serializer.camel_case_naming_strategy:
         class: 'JMS\Serializer\Naming\IdenticalPropertyNamingStrategy'
+        
+ 
+    app.form_login_authenticator:
+        class: AppBundle\Security\FormLoginAuthenticator
+        arguments: ["@router", "@security.password_encoder"]

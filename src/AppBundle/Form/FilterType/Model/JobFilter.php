@@ -4,10 +4,9 @@ namespace AppBundle\Form\FilterType\Model;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class JobFilter
-{
-    const LIMIT = 30;
+class JobFilter {
 
+    const LIMIT = 30;
     const DEFAULT_PAGE = 1;
     const DEFAULT_ORDER_KEY = 'id';
     const DEFAULT_ORDER_DIRECTION = 'DESC';
@@ -85,50 +84,54 @@ class JobFilter
     protected $description;
 
     /**
-    *
-    * @var int
-    *
-    * @Assert\type(type="integer")
-    **/
+     *
+     * @var int
+     *
+     * @Assert\type(type="integer")
+     * */
     protected $customer;
 
     /**
-    *
-    * @var string
-    *
-    * @Assert\type(type="string")
-    **/
+     *
+     * @var int
+     *
+     * @Assert\type(type="integer")
+     * */
+    protected $user_id;
+
+    /**
+     *
+     * @var string
+     *
+     * @Assert\type(type="string")
+     * */
     protected $priority;
 
     /**
      * @return array
      */
-    public static function getOrderKeys()
-    {
+    public static function getOrderKeys() {
         return ['id'];
     }
 
     /**
      * @return array
      */
-    public static function getOrderDirections()
-    {
+    public static function getOrderDirections() {
         return [-1, 1];
     }
 
     /**
      * @return array
      */
-    public static function getPossibleSerialisationGroups()
-    {
+    public static function getPossibleSerialisationGroups() {
         return ['list', 'default', 'customer'];
     }
 
     /**
      * @return string
      */
-    public function getPriority()
-    {
+    public function getPriority() {
         return $this->priority;
     }
 
@@ -137,8 +140,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setPriority($priority)
-    {
+    public function setPriority($priority) {
         $this->priority = $priority;
 
         return $this;
@@ -147,9 +149,8 @@ class JobFilter
     /**
      * @return int
      */
-    public function getCustomer()
-    {
-      return $this->customer;
+    public function getCustomer() {
+        return $this->customer;
     }
 
     /**
@@ -157,19 +158,34 @@ class JobFilter
      *
      * @return self
      */
-     public function setCustomer($customer)
-     {
+    public function setCustomer($customer) {
         $this->customer = $customer;
 
         return $this;
-     }
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserID() {
+        return $this->user_id;
+    }
+
+    /**
+     * 
+     * @param type $user_id
+     * @return $this
+     */
+    public function setUserID($user_id) {
+        $this->user_id = $user_id;
+        return $this;
+    }
 
     /**
      * @return string
      */
-    public function getStatus()
-    {
-      return $this->status;
+    public function getStatus() {
+        return $this->status;
     }
 
     /**
@@ -177,55 +193,49 @@ class JobFilter
      *
      * @return self
      */
-     public function setStatus($status)
-     {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
-     }
+    }
 
-     /**
-      * @return string
-      */
-     public function getType()
-     {
-       return $this->type;
-     }
+    /**
+     * @return string
+     */
+    public function getType() {
+        return $this->type;
+    }
 
-     /**
-      * @param string $type
-      *
-      * @return self
-      */
-      public function setType($type)
-      {
-         $this->type = $type;
+    /**
+     * @param string $type
+     *
+     * @return self
+     */
+    public function setType($type) {
+        $this->type = $type;
 
-         return $this;
-      }
+        return $this;
+    }
 
-      public function getDescription()
-      {
+    public function getDescription() {
         return $this->description;
-      }
+    }
 
-      /**
-       * @param string $description
-       *
-       * @return self
-       */
-       public function setDescription($description)
-       {
-          $this->description = $description;
+    /**
+     * @param string $description
+     *
+     * @return self
+     */
+    public function setDescription($description) {
+        $this->description = $description;
 
-          return $this;
-       }
+        return $this;
+    }
 
     /**
      * @return int
      */
-    public function getPage()
-    {
+    public function getPage() {
         return $this->page ? $this->page : self::DEFAULT_PAGE;
     }
 
@@ -234,8 +244,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setPage($page)
-    {
+    public function setPage($page) {
         $this->page = $page;
 
         return $this;
@@ -244,8 +253,7 @@ class JobFilter
     /**
      * @return string
      */
-    public function getOrderKey()
-    {
+    public function getOrderKey() {
         return $this->orderKey ? $this->orderKey : self::DEFAULT_ORDER_KEY;
     }
 
@@ -254,8 +262,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setOrderKey($orderKey)
-    {
+    public function setOrderKey($orderKey) {
         $this->orderKey = $orderKey;
 
         return $this;
@@ -264,8 +271,7 @@ class JobFilter
     /**
      * @return string
      */
-    public function getOrderDirection()
-    {
+    public function getOrderDirection() {
         return empty($this->orderDirection) || $this->orderDirection == -1 ? 'DESC' : 'ASC';
     }
 
@@ -274,8 +280,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setOrderDirection($orderDirection)
-    {
+    public function setOrderDirection($orderDirection) {
         $this->orderDirection = $orderDirection;
 
         return $this;
@@ -284,8 +289,7 @@ class JobFilter
     /**
      * @return string
      */
-    public function getKeyword()
-    {
+    public function getKeyword() {
         return $this->keyword;
     }
 
@@ -294,8 +298,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setKeyword($keyword)
-    {
+    public function setKeyword($keyword) {
         $this->keyword = $keyword;
 
         return $this;
@@ -304,8 +307,7 @@ class JobFilter
     /**
      * @return int
      */
-    public function getLimit()
-    {
+    public function getLimit() {
         return empty($this->limit) || $this->limit > self::LIMIT ? self::LIMIT : $this->limit;
     }
 
@@ -314,8 +316,7 @@ class JobFilter
      *
      * @return self
      */
-    public function setLimit($limit)
-    {
+    public function setLimit($limit) {
         $this->limit = $limit > self::LIMIT ? self::LIMIT : $limit;
 
         return $this;
@@ -324,8 +325,7 @@ class JobFilter
     /**
      * @return array
      */
-    public function getSerialisationGroups()
-    {
+    public function getSerialisationGroups() {
         return !empty($this->serialisationGroups) ? $this->serialisationGroups : ['default'];
     }
 
@@ -334,10 +334,10 @@ class JobFilter
      *
      * @return array
      */
-    public function setSerialisationGroups($serialisationGroups)
-    {
+    public function setSerialisationGroups($serialisationGroups) {
         $this->serialisationGroups = $serialisationGroups;
 
         return $this;
     }
+
 }
