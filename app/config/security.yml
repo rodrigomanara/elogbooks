@@ -18,10 +18,9 @@ security:
             logout:
                 path: /logout
                 target: /
-                
-        member:
-            pattern: /(*)
-            context: member
-            anonymous: true
-            stateless: false
-            http_basic: ~
+         
+                 
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/member, roles: [ROLE_USER , ROLE_ADMIN] }             

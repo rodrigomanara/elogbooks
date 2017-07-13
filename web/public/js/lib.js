@@ -24,8 +24,10 @@ var app = {
                     html += "<td>" + (v.status == 0 ? 'OPEN' : 'DONE') + "</td>";
                     html += "</tr>";
                 });
-                $('#jobs_list').html('<table class="table">' + html + ' </table>');
-            }
+                $('#list').html('<table class="table">' + html + ' </table>');
+                 
+            },  
+            
         });
     },
 
@@ -42,7 +44,7 @@ var app = {
                 }
             });
         })
-        
+
         var user_lengh = $('#user_list_drop').length;
 
         if (user_lengh > 0) {
@@ -73,7 +75,8 @@ var app = {
                     html += "</tr>";
                 });
                 $('#list').html('<table class="table">' + html + ' </table>');
-            }
+                 
+            },  
         });
     },
     createQuote: function () {
@@ -114,9 +117,9 @@ var app = {
 
                 html += "</select>";
                 $('#user_list_drop').html(html);
-                
-                
-        $('select').material_select();
+
+
+                $('select').material_select();
 
             }
         });
@@ -149,13 +152,21 @@ var app = {
                     html += "</tr>";
                 });
                 $('#list').html('<table class="table">' + html + ' </table>');
-            }
+                
+                 
+            }, 
         });
     }
     ,
     preload: function () {
         var preload = '<h4>loading...</h4><div class="progress"><div class="indeterminate"></div></div>';
         return preload;
+    },
+    remorepreload: function () {
+        var lenght = $('.table').size();
+ 
+        if (lenght == 0)
+            $('#list').html('no data');
     }
 
 }
