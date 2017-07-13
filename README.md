@@ -1,9 +1,7 @@
 # elogbooks
 
-on this development there are 3 entities, USERS, QUOTES, JOBS<br/>
-Add some changes the entities to create a relation between USERS and QUOTES | USERS and JOBS </br>
- Add secury firewall 
-
+on this development I have add a new Entity USERS and create a relation between these 2 QUOTES, JOBS<br/>
+security was add 'cos login from was added
 #### Installation
  
 - php bin/console doctrine:database:create
